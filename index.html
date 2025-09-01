@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farhan Market — Top Up Game Cepat & Aman</title>
+  <meta name="description" content="Website top up game: Mobile Legends, Free Fire, PUBG, Genshin Impact, Valorant, dan banyak lagi. Pembayaran lengkap (QRIS, e-Wallet, Bank)."/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Inter', 'ui-sans-serif', 'system-ui'],
+          },
+          colors: {
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+          },
+          boxShadow: {
+            glow: '0 10px 30px rgba(0,0,0,0.25)',
+          },
+          keyframes: {
+            gradient: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            fadeUp: {
+              '0%': { opacity: 0, transform: 'translateY(20px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            }
+          },
+          animation: {
+            gradient: 'gradient 10s ease infinite',
+            float: 'float 6s ease-in-out infinite',
+            fadeUp: 'fadeUp 700ms ease forwards',
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --grad: linear-gradient(120deg, #2563eb, #000000, #0400ff);
+    }
+    .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 200%; animation: gradient 10s ease infinite; }
+    .grad-bg { background: var(--grad); background-size: 200% 200%; }
+    /* Cool glassmorphism */
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); }
+    /* On-scroll reveal utility */
+    .reveal { opacity: 0; transform: translateY(24px); transition: all .7s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    /* Fancy card hover/tilt */
+    .tilt { transition: transform .15s ease, box-shadow .15s ease; transform-style: preserve-3d; }
+    .tilt:hover { box-shadow: 0 12px 40px rgba(0,0,0,.25); }
+    /* Animated gradient halo */
+    .halo::before { content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: 1.5rem; filter: blur(18px); background: var(--grad); background-size: 200% 200%; animation: gradient 8s ease infinite; opacity: .65; }
+  </style>
+</head>
+<body class="bg-slate-950 text-white font-display antialiased">
+  <!-- Global animated gradient background -->
+  <div class="fixed inset-0 -z-10 grad-bg opacity-20 animate-gradient"></div>
+  <!-- Decorative blobs -->
+  <div class="pointer-events-none fixed -top-24 -right-24 h-72 w-72 rounded-full opacity-20 blur-3xl grad-bg animate-gradient"></div>
+  <div class="pointer-events-none fixed -bottom-24 -left-24 h-72 w-72 rounded-full opacity-20 blur-3xl grad-bg animate-gradient"></div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-slate-900/50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl grad-bg animate-gradient"></div>
+          <span class="text-xl font-extrabold tracking-tight">Flash<span class="grad-text">TopUp</span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#games" class="hover:opacity-80">Game</a>
+          <a href="#payments" class="hover:opacity-80">Pembayaran</a>
+          <a href="#location" class="hover:opacity-80">Lokasi</a>
+          <a href="#contact" class="hover:opacity-80">Kontak</a>
+        </nav>
+        <button id="openCart" class="rounded-2xl px-4 py-2 glass hover:opacity-90">Keranjang (0)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+            Top Up <span class="grad-text">Game Favorit</span> Anda<br/>
+            <span class="text-slate-300">Cepat, Aman, Resmi.</span>
+          </h1>
+          <p class="mt-5 text-slate-300/90 md:text-lg">Farhan Market menyediakan top up instan untuk ratusan game populer. Dukungan pembayaran lengkap: QRIS, e-Wallet, Virtual Account, dan Transfer Bank.</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#games" class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 grad-bg animate-gradient font-semibold shadow-glow">Mulai Top Up</a>
+            <a href="#how" class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 glass">Cara Kerja</a>
+          </div>
+          <div class="mt-8 flex items-center gap-6 text-xs text-slate-300/80">
+            <div class="flex items-center gap-2"><span class="i">⚡</span> Proses kilat</div>
+            <div class="flex items-center gap-2"><span class="i">🛡️</span> Pembayaran aman</div>
+            <div class="flex items-center gap-2"><span class="i">🎮</span> Banyak pilihan game</div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-8 rounded-3xl opacity-40 blur-3xl grad-bg animate-gradient"></div>
+          <div class="relative glass halo rounded-3xl p-6 md:p-8">
+            <div class="grid grid-cols-3 gap-4">
+              <!-- Animated stat cards -->
+              <div class="rounded-2xl p-4 text-center glass tilt reveal" style="animation-delay:100ms">
+                <div class="text-3xl font-extrabold">500+</div>
+                <div class="text-xs text-slate-300/80">Pilihan Denom</div>
+              </div>
+              <div class="rounded-2xl p-4 text-center glass tilt reveal" style="animation-delay:200ms">
+                <div class="text-3xl font-extrabold">99.9%</div>
+                <div class="text-xs text-slate-300/80">Uptime</div>
+              </div>
+              <div class="rounded-2xl p-4 text-center glass tilt reveal" style="animation-delay:300ms">
+                <div class="text-3xl font-extrabold">1–3 mnt</div>
+                <div class="text-xs text-slate-300/80">Estimasi Masuk</div>
+              </div>
+            </div>
+            <canvas id="sparkCanvas" class="mt-6 h-40 w-full rounded-2xl bg-slate-900/50"></canvas>
+            <p class="mt-3 text-center text-xs text-slate-400">Animasi partikel realtime — sekadar keren‑kerenan 😎</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH & FILTER -->
+  <section id="games" class="py-10 md:py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <h2 class="text-2xl md:text-3xl font-bold">Pilih Game</h2>
+        <div class="flex items-center gap-3">
+          <input id="searchInput" type="text" placeholder="Cari game…" class="w-72 max-w-full rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-2 focus:outline-none"/>
+          <select id="genreSelect" class="rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-2 focus:outline-none">
+            <option value="">Semua Genre</option>
+            <option>MOBA</option>
+            <option>FPS</option>
+            <option>RPG</option>
+            <option>Battle Royale</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Games Grid -->
+      <div id="gameGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <!-- Cards generated by JS below -->
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="glass rounded-3xl p-6 md:p-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">Bagaimana proses top up?</h2>
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="reveal">
+            <div class="text-3xl">①</div>
+            <h3 class="mt-2 font-semibold">Pilih Game</h3>
+            <p class="text-sm text-slate-300/90">Cari game favorit dan klik <em>Top Up</em>.</p>
+          </div>
+          <div class="reveal" style="transition-delay:100ms">
+            <div class="text-3xl">②</div>
+            <h3 class="mt-2 font-semibold">Masukkan ID</h3>
+            <p class="text-sm text-slate-300/90">Isi User ID/Server sesuai instruksi.</p>
+          </div>
+          <div class="reveal" style="transition-delay:200ms">
+            <div class="text-3xl">③</div>
+            <h3 class="mt-2 font-semibold">Pilih Denom & Bayar</h3>
+            <p class="text-sm text-slate-300/90">Metode lengkap: QRIS, e‑Wallet, Bank.</p>
+          </div>
+          <div class="reveal" style="transition-delay:300ms">
+            <div class="text-3xl">④</div>
+            <h3 class="mt-2 font-semibold">Selesai!</h3>
+            <p class="text-sm text-slate-300/90">Diamond masuk otomatis, cek in‑game.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENTS -->
+  <section id="payments" class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6">Metode Pembayaran</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-2xl p-5 reveal">
+          <h3 class="font-semibold mb-2">QRIS</h3>
+          <p class="text-sm text-slate-300/90">Scan sekali untuk semua bank & e‑wallet. Proses instan.</p>
+        </div>
+        <div class="glass rounded-2xl p-5 reveal" style="transition-delay:100ms">
+          <h3 class="font-semibold mb-2">e‑Wallet</h3>
+          <p class="text-sm text-slate-300/90">OVO, GoPay, DANA, ShopeePay, LinkAja — tinggal klik bayar.</p>
+        </div>
+        <div class="glass rounded-2xl p-5 reveal" style="transition-delay:200ms">
+          <h3 class="font-semibold mb-2">Virtual Account</h3>
+          <p class="text-sm text-slate-300/90">BCA, BRI, BNI, Mandiri, Permata, CIMB, dan lainnya.</p>
+        </div>
+        <div class="glass rounded-2xl p-5 reveal" style="transition-delay:300ms">
+          <h3 class="font-semibold mb-2">Kartu Kredit/Debit</h3>
+          <p class="text-sm text-slate-300/90">Visa, Mastercard, JCB — 3D Secure.</p>
+        </div>
+        <div class="glass rounded-2xl p-5 reveal" style="transition-delay:400ms">
+          <h3 class="font-semibold mb-2">Gerai Retail</h3>
+          <p class="text-sm text-slate-300/90">Alfamart, Indomaret — bayar tunai di kasir.</p>
+        </div>
+        <div class="glass rounded-2xl p-5 reveal" style="transition-delay:500ms">
+          <h3 class="font-semibold mb-2">COD (Khusus Toko)</h3>
+          <p class="text-sm text-slate-300/90">Ambil langsung di outlet terdekat kami.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location" class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6">Lokasi Toko</h2>
+      <div class="grid md:grid-cols-2 gap-6 items-stretch">
+        <div class="glass rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-semibold">Farhan Market — Subang</h3>
+            <p class="mt-2 text-slate-300/90">Desa Salam Jaya, Kampung Salam, RT:05, RW: 02</p>
+            <p class="text-slate-300/80 text-sm mt-1">Buka: 10.00–22.00 WIB (Senin–Minggu)</p>
+            <ul class="mt-4 space-y-1 text-sm text-slate-300/90">
+              <li>📞 0851-5755-3002</li>
+              <li>✉️ deniasfarhan4@gmail.com</li>
+              <li>💬 WhatsApp: 0851-5755-3002</li>
+            </ul>
+          </div>
+          <div class="mt-6 flex gap-3">
+            <a href="#contact" class="rounded-2xl px-4 py-2 glass">Hubungi Kami</a>
+            <a target="_blank" href="<iframe src="" "></iframe>" class="rounded-2xl px-4 py-2 grad-bg animate-gradient">Buka Maps</a>
+          </div>
+        </div>
+        <div class="rounded-3xl overflow-hidden halo">
+          <iframe title="Google Maps" class="w-full h-[360px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3964.763576218951!2d107.60194307499208!3d-6.424414993566568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMjUnMjcuOSJTIDEwN8KwMzYnMTYuMyJF!5e0!3m2!1sid!2sid!4v1756725407397!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="glass rounded-3xl p-6 md:p-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">Butuh bantuan?</h2>
+        <form id="contactForm" class="grid md:grid-cols-2 gap-4">
+          <input required placeholder="Nama" class="rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-3 focus:outline-none"/>
+          <input required type="email" placeholder="Email" class="rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-3 focus:outline-none"/>
+          <input placeholder="Nomor WhatsApp" class="rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-3 focus:outline-none md:col-span-2"/>
+          <textarea required placeholder="Pesan…" rows="4" class="rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-3 focus:outline-none md:col-span-2"></textarea>
+          <div class="md:col-span-2 flex items-center justify-between">
+            <label class="text-xs text-slate-400 flex items-center gap-2"><input type="checkbox" class="accent-blue-500" checked/> Kirim salinan ke email saya</label>
+            <button class="rounded-2xl px-6 py-3 grad-bg animate-gradient font-semibold">Kirim</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 py-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-sm text-slate-400 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p>© <span id="year"></span> Farhan Market. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-white">Syarat</a>
+        <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+        <a href="#" class="hover:text-white">Pusat Bantuan</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART / MODAL -->
+  <div id="modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative mx-auto mt-24 w-[92%] max-w-2xl rounded-3xl glass p-6 shadow-glow">
+      <div class="flex items-start justify-between gap-4">
+        <h3 class="text-xl font-bold">Top Up</h3>
+        <button id="closeModal" class="rounded-xl px-3 py-1 glass">Tutup</button>
+      </div>
+      <div class="mt-4 grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs text-slate-400">Game</label>
+          <input id="modalGame" class="mt-1 w-full rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2" readonly />
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">User ID</label>
+          <input id="userId" placeholder="Masukkan ID" class="mt-1 w-full rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2" />
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">Server (opsional)</label>
+          <input id="serverId" placeholder="Server/Region" class="mt-1 w-full rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2" />
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">Nominal</label>
+          <select id="denom" class="mt-1 w-full rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2">
+            <option>86 Diamonds</option>
+            <option>172 Diamonds</option>
+            <option>344 Diamonds</option>
+            <option>706 Diamonds</option>
+            <option>Weekly Pass</option>
+          </select>
+        </div>
+        <div class="md:col-span-2">
+          <label class="text-xs text-slate-400">Pembayaran</label>
+          <div class="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <label class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2 cursor-pointer">
+              <input type="radio" name="pay" value="QRIS" /> QRIS
+            </label>
+            <label class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2 cursor-pointer">
+              <input type="radio" name="pay" value="OVO" /> OVO
+            </label>
+            <label class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2 cursor-pointer">
+              <input type="radio" name="pay" value="GoPay" /> GoPay
+            </label>
+            <label class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2 cursor-pointer">
+              <input type="radio" name="pay" value="DANA" /> DANA
+            </label>
+            <label class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2 cursor-pointer">
+              <input type="radio" name="pay" value="VA BCA" /> VA BCA
+            </label>
+            <label class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-2 cursor-pointer">
+              <input type="radio" name="pay" value="Kartu" /> Kartu Kredit/Debit
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <div class="text-xs text-slate-400">Dengan melanjutkan, Anda menyetujui <a href="#" class="underline">S&K</a>.</div>
+        <button id="payBtn" class="rounded-2xl px-5 py-2 grad-bg animate-gradient font-semibold">Bayar Sekarang</button>
+      </div>
+
+      <div id="progressWrap" class="mt-6 hidden">
+        <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
+          <div id="progressBar" class="h-full w-0 grad-bg animate-gradient"></div>
+        </div>
+        <p id="progressText" class="mt-2 text-sm text-slate-300">Memproses pembayaran…</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== UTIL: Year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Sample game data =====
+    const games = [
+      { name: 'Mobile Legends', genre: 'MOBA', cover: 'https://wallpapers.com/images/hd/original-mobile-legends-bang-bang-logo-25b8jjlmo78wxkix.jpg', denoms: ['86', '172', '344', '706', 'Weekly Pass'] },
+      { name: 'Free Fire', genre: 'Battle Royale', cover: 'https://i.pinimg.com/736x/92/35/9e/92359e1d35b2e7478b00cd82ee200d5f.jpg', denoms: ['50', '70', '140', '355'] },
+      { name: 'PUBG Mobile', genre: 'Battle Royale', cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIz0li_ytL2wg78n2sUUoxxP19Ey5V53vLmg&s', denoms: ['60', '300', '600', '1800'] },
+      { name: 'Genshin Impact', genre: 'RPG', cover: 'https://i.pinimg.com/1200x/73/32/52/7332527b2baa4785959b1b8e2ba41dce.jpg', denoms: ['60', '330', '1090', '2240', 'Blessing'] },
+      { name: 'Valorant', genre: 'FPS', cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa09eB34DafBEsXOFisvea9s_x4d7SMhO0tQ&s', denoms: ['475', '1000', '2050', '3650'] },
+      { name: 'Call of Duty: Mobile', genre: 'FPS', cover: 'https://wallpapers.com/images/hd/call-of-duty-mobile-logo-black-background-slr1ytq3vlpgjek2.jpg', denoms: ['80', '420', '880', '2400'] },
+      { name: 'Honkai: Star Rail', genre: 'RPG', cover: 'https://interfaceingame.com/wp-content/uploads/honkai-star-rail/honkai-star-rail-logo.png', denoms: ['60', '300', '980', '1980'] },
+      { name: 'Roblox', genre: 'RPG', cover: 'https://wallpapers.com/images/hd/roblox-logo-7md55tk8xpcaoi0v.jpg', denoms: ['80', '400', '800', '1700'] },
+      { name: 'Clash of Clans', genre: 'Strategy', cover: 'https://wallpapers.com/images/hd/clash-of-clans-gaming-logo-kzz4fawe3oakfjot.jpg', denoms: ['80', '500', '1200'] },
+      { name: 'Apex Legends', genre: 'FPS', cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsYdkmEwyH_RMhv3Kuy7GfxOMWAcoauq2zLQ&s', denoms: ['1000', '2150', '4350'] },
+      { name: 'Point Blank', genre: 'FPS', cover: 'https://i.pinimg.com/736x/49/4b/f1/494bf1d89446242a2380dcc9591a3f07.jpg', denoms: ['120', '360', '1200'] },
+      { name: 'Minecraft', genre: 'RPG', cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5DPG69l6vyNshiBemgBwvgnqCaG70rX-y5g&s', denoms: ['310', '620', '930'] }
+    ];
+
+    const grid = document.getElementById('gameGrid');
+
+    function createCard(game) {
+      const card = document.createElement('div');
+      card.className = 'relative overflow-hidden rounded-3xl glass tilt reveal';
+      card.innerHTML = `
+        <div class="relative h-40 overflow-hidden">
+          <img src="${game.cover}" alt="${game.name}" class="h-full w-full object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-lg">${game.name}</h3>
+            <span class="text-xs rounded-full px-2 py-1 bg-white/10">${game.genre}</span>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-300/80">
+            ${game.denoms.slice(0,4).map(d=>`<span class='rounded-xl border border-white/10 px-2 py-1'>${d}</span>`).join('')}
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <button class="topupBtn rounded-2xl px-4 py-2 grad-bg animate-gradient font-semibold" data-name="${game.name}">Top Up</button>
+            <button class="rounded-2xl px-3 py-2 glass text-xs">Detail</button>
+          </div>
+        </div>`;
+      // tilt effect
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        const rx = ((y / rect.height) - .5) * -8;
+        const ry = ((x / rect.width) - .5) * 8;
+        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.transform = 'perspective(800px) rotateX(0) rotateY(0)');
+      return card;
+    }
+
+    function renderGames(list) {
+      grid.innerHTML = '';
+      list.forEach(g => grid.appendChild(createCard(g)));
+      observe();
+    }
+
+    renderGames(games);
+
+    // ===== Search & Filter =====
+    const searchInput = document.getElementById('searchInput');
+    const genreSelect = document.getElementById('genreSelect');
+
+    function applyFilter() {
+      const q = searchInput.value.toLowerCase();
+      const genre = genreSelect.value;
+      const filtered = games.filter(g => (
+        (!genre || g.genre === genre) && g.name.toLowerCase().includes(q)
+      ));
+      renderGames(filtered);
+    }
+
+    searchInput.addEventListener('input', applyFilter);
+    genreSelect.addEventListener('change', applyFilter);
+
+    // ===== Modal Logic =====
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const modalGame = document.getElementById('modalGame');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+
+    document.body.addEventListener('click', (e) => {
+      if (e.target.matches('.topupBtn')) {
+        const name = e.target.getAttribute('data-name');
+        modalGame.value = name;
+        modal.classList.remove('hidden');
+        progressWrap.classList.add('hidden');
+        progressBar.style.width = '0%';
+      }
+    });
+
+    closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+
+    // ===== Fake payment progress =====
+    document.getElementById('payBtn').addEventListener('click', () => {
+      progressWrap.classList.remove('hidden');
+      progressText.textContent = 'Memproses pembayaran…';
+      let p = 0;
+      const iv = setInterval(() => {
+        p += Math.random() * 25;
+        if (p >= 100) {
+          p = 100;
+          clearInterval(iv);
+          progressText.textContent = 'Berhasil! Diamond sedang dikirim ke akun Anda.';
+          confetti();
+        }
+        progressBar.style.width = p + '%';
+      }, 500);
+    });
+
+    // ===== Cart (simple counter) =====
+    let cartCount = 0;
+    const cartBtn = document.getElementById('openCart');
+    document.body.addEventListener('click', (e) => {
+      if (e.target.matches('.topupBtn')) {
+        cartCount++;
+        cartBtn.textContent = `Keranjang (${cartCount})`;
+      }
+    });
+
+    // ===== On-scroll reveal =====
+    function observe() {
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) en.target.classList.add('show'); });
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    }
+    observe();
+
+    // ===== Canvas particles (hero) =====
+    const canvas = document.getElementById('sparkCanvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas(){ canvas.width = canvas.clientWidth; canvas.height = canvas.clientHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+    const parts = Array.from({length: 80}).map(()=>({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*2+0.5,
+      vx: (Math.random()-0.5)*0.6,
+      vy: (Math.random()-0.5)*0.6,
+    }));
+
+    function loop(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      parts.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>canvas.width) p.vx*=-1;
+        if(p.y<0||p.y>canvas.height) p.vy*=-1;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = 'white';
+        ctx.globalAlpha = 0.9;
+        ctx.fill();
+      });
+      // connecting lines
+      for(let i=0;i<parts.length;i++){
+        for(let j=i+1;j<parts.length;j++){
+          const a=parts[i], b=parts[j];
+          const d = Math.hypot(a.x-b.x, a.y-b.y);
+          if(d<80){
+            ctx.globalAlpha = 1 - d/80;
+            const grd = ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+            grd.addColorStop(0,'#60a5fa'); // blue-400
+            grd.addColorStop(1,'#f87171'); // red-400
+            ctx.strokeStyle = grd;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(loop);
+    } loop();
+
+    // ===== Confetti =====
+    function confetti(){
+      const n = 120;
+      for(let i=0;i<n;i++){
+        const div = document.createElement('div');
+        div.className = 'pointer-events-none fixed top-0 left-1/2 w-1 h-3 rounded-full';
+        div.style.background = i%2? '#60a5fa' : '#f87171';
+        div.style.transform = `translateX(${(Math.random()-0.5)*600}px)`;
+        div.style.opacity = '0.9';
+        document.body.appendChild(div);
+        const duration = 1200 + Math.random()*800;
+        div.animate([
+          { transform: div.style.transform + ' translateY(-20px) rotate(0deg)' },
+          { transform: div.style.transform + ' translateY(100vh) rotate(720deg)' }
+        ], { duration, easing:'cubic-bezier(.22,.61,.36,1)', fill:'forwards' });
+        setTimeout(()=>div.remove(), duration+50);
+      }
+    }
+  </script>
+</body>
+</html>
